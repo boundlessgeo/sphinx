@@ -146,6 +146,7 @@ class BuildDoc(Command):
         self.config_dir = abspath(self.config_dir)
 
         self.ensure_string_list('builder')  # type: ignore
+        self.build_dir = os.getenv('SPHINX_BUILD', self.build_dir)
         if self.build_dir is None:
             build = self.get_finalized_command('build')  # type: ignore
             self.build_dir = os.path.join(abspath(build.build_base), 'sphinx')
